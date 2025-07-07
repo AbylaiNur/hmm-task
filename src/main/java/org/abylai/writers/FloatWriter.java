@@ -3,7 +3,6 @@ package org.abylai.writers;
 import org.abylai.DataType;
 import org.abylai.Options;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -14,14 +13,9 @@ public class FloatWriter extends Writer {
     private BigDecimal minStat;
     private BigDecimal sumStat;
 
-    public FloatWriter(Options options) throws IOException {
+    public FloatWriter(Options options) {
         super(options, DataType.FLOAT);
-    }
-
-    @Override
-    public void write(String line) throws IOException {
-        super.write(line);
-        accept(line);
+        countStat = 0;
     }
 
     @Override

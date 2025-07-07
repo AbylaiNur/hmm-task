@@ -3,23 +3,15 @@ package org.abylai.writers;
 import org.abylai.DataType;
 import org.abylai.Options;
 
-import java.io.IOException;
-
 public class StringWriter extends Writer {
 
     private int countStat;
     private Integer minLengthStat;
     private Integer maxLengthStat;
 
-    public StringWriter(Options options) throws IOException {
+    public StringWriter(Options options) {
         super(options, DataType.STRING);
         countStat = 0;
-    }
-
-    @Override
-    public void write(String line) throws IOException {
-        super.write(line);
-        accept(line);
     }
 
     @Override

@@ -3,7 +3,6 @@ package org.abylai.writers;
 import org.abylai.DataType;
 import org.abylai.Options;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
@@ -15,15 +14,9 @@ public class IntegerWriter extends Writer {
     private BigInteger minStat;
     private BigInteger sumStat;
 
-    public IntegerWriter(Options options) throws IOException {
+    public IntegerWriter(Options options) {
         super(options, DataType.INTEGER);
         countStat = 0;
-    }
-
-    @Override
-    public void write(String line) throws IOException {
-        super.write(line);
-        accept(line);
     }
 
     @Override

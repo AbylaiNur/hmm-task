@@ -19,7 +19,14 @@ public class Main {
     }
 
     private static void run(String[] args) {
-        Options options = ArgumentParser.parseArgs(args);
+        Options options;
+
+        try {
+            options = ArgumentParser.parseArgs(args);
+        } catch (IllegalArgumentException e) {
+            Logger.error("Error parsing arguments", e);
+            return;
+        }
 
         try (
             IntegerWriter integerWriter = new IntegerWriter(options);

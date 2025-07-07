@@ -1,17 +1,49 @@
 package org.abylai;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+    }
+
+    // Возвращает парсированные аргументы
+    private static Options parseArgs(String[] args) {
+        Options options = new Options();
+        for (int i = 0; i < args.length; i++) {
+            switch (args[i]) {
+                case "-o" -> {
+                    if (++i >= args.length) throw new IllegalArgumentException("Missing required argument");
+                    options.outputDir = Paths.get(args[i]);
+                }
+                case "-p" -> {
+                    if (++i >= args.length) throw new IllegalArgumentException("Missing required argument");
+                    options.prefix = args[i];
+                }
+                case "-a" -> options.append = true;
+                case "-s" -> options.statMode = StatMode.SHORT;
+                case "-f" -> options.statMode = StatMode.FULL;
+                default -> options.inputFiles.add(Paths.get(args[i]));
+            }
         }
+
+        return options;
+    }
+
+    private static class Options {
+        Path outputDir = Paths.get(".");
+        String prefix = "";
+        boolean append = false;
+        // В задании нету упоминания про дефолтный режим, так что оставляю просто SHORT
+        StatMode statMode = StatMode.SHORT;
+        List<Path> inputFiles = new ArrayList<>();
+    }
+
+    private enum StatMode {
+        SHORT, FULL
     }
 }

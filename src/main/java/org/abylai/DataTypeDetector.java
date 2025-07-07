@@ -16,8 +16,4 @@ public class DataTypeDetector {
         return s.matches("[+-]?(\\d+\\.\\d*|\\d*\\.\\d+)([eE][+-]?\\d+)?")
                 || s.matches("[+-]?\\d+[eE][+-]?\\d+");
     }
-
-    public enum DataType {
-        INTEGER, FLOAT, STRING
-    }
 }

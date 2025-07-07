@@ -8,7 +8,37 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        try {
+            run(args);
+        } catch (Exception e) {
+            // TODO: Добавить нормальую обработку
+            e.printStackTrace();
+        }
+    }
 
+    private static void run(String[] args) {
+        Options options = parseArgs(args);
+
+    }
+
+    private static DataType detect(String line) {
+        if (isInteger(line)) return DataType.INTEGER;
+        if (isFloat(line)) return DataType.FLOAT;
+        return DataType.STRING;
+    }
+
+    private static boolean isInteger(String s) {
+        return s.matches("[+-]?\\d+");
+    }
+
+    private static boolean isFloat(String s) {
+        // TODO: Проверить на баги
+        return s.matches("[+-]?(\\d+\\.\\d*|\\d*\\.\\d+)([eE][+-]?\\d+)?")
+                || s.matches("[+-]?\\d+[eE][+-]?\\d+");
+    }
+
+    private enum DataType {
+        INTEGER, FLOAT, STRING
     }
 
     // Возвращает парсированные аргументы

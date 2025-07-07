@@ -9,8 +9,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-class Writer implements AutoCloseable {
-    private final Options options;
+public abstract class Writer implements AutoCloseable {
+    protected final Options options;
     private final Path filepath;
     private BufferedWriter writer;
 
@@ -47,4 +47,8 @@ class Writer implements AutoCloseable {
             writer.close();
         }
     }
+
+    // Добавляет значение в статистику
+    public abstract void accept(String line);
+    public abstract void printStats();
 }

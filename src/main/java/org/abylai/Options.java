@@ -9,8 +9,7 @@ public class Options {
     public Path outputDir = Paths.get(".");
     public String prefix = "";
     public boolean append = false;
-    // В задании нету упоминания про дефолтный режим, так что оставляю просто SHORT
-    public StatMode statMode = StatMode.SHORT;
+    public StatMode statMode = null;
     public List<Path> inputFiles = new ArrayList<>();
 
     public enum StatMode {
